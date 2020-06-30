@@ -6,9 +6,20 @@ app = Flask(__name__)
 
 
 
-# @app.route('/', methods= ["GET", "POST"])
+# @app.route('/', methods=["GET", "POST"])
 # def index():
-#     pass
+#     if request.method == 'GET':
+#         return render_template("index.html")
+
+# @app.route('/output', methods=["GET", "POST"])
+# def output():
+#     with sr.Microphone() as source:
+#         audio = r.listen(source)
+#         inp = r.recognize_google(audio)
+#         # print(inp)
+#         # operation(inp.lower())
+#         return render_template("output.html", ans = inp)
+
 
 def numbers(inp):
     num =[]
@@ -32,7 +43,7 @@ def operation(inp):
         print(subtract(num,flag=True)) #if flag is true num[1] - num[0]
     elif "-" in inp or "minus" in inp:
         print(subtract(num,flag=False)) #if flag is flase num[0] - num[1]    
-    elif "multiply" in inp or "times" in inp or "multiplied" in inp or "into" in inp:
+    elif "multiply" in inp or "times" in inp or "multiplied" in inp or "into" in inp or 'x' in inp or '*' in inp:
         print(multiply(num))    
     elif "divide" in inp or "by" in inp or "/" in inp:
         print(divide(num))
@@ -73,7 +84,7 @@ def square(num):
     return total
 
 with sr.Microphone() as source:
-    print("Kuch toh bolo, sharma kyu rahe hai")
+    print("Speak Now")
     audio = r.listen(source)
     inp = r.recognize_google(audio)
     print(inp)
