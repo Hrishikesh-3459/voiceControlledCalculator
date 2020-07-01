@@ -24,19 +24,22 @@ app = Flask(__name__)
 #         return render_template("output.html", ans = inp)
 
 
+def isDigit(x):
+    try:
+        float(x)
+        return True
+    except ValueError:
+        return False
+
+
 def numbers(inp):
     num =[]
     for i in inp.split():
-        if i.isdigit():
+        if isDigit(i):
             num.append(float(i))
     print(num)
     return num
 
-# mytext = 'Welcome to geeksforgeeks!'
-# language = 'en'
-# myobj = gTTS(text=mytext, lang=language, slow=False)
-# myobj.save("welcome.mp3")
-# os.system("mpg321 welcome.mp3")
 
 def operation(inp):
     num = numbers(inp)
