@@ -37,6 +37,7 @@ def numbers(inp):
     for i in inp.split():
         if isDigit(i):
             num.append(float(i))
+    print(num)
     return num
 
 
@@ -96,7 +97,7 @@ def add(num):
     total = sum(num)
     if total == int(total):
         return int(total)
-    return total
+    return "{:.2f}".format(total)
 
 def subtract(num,flag):
     if flag == True:
@@ -105,7 +106,7 @@ def subtract(num,flag):
         total = num[0] - num[1]
     if total == int(total):
         return int(total)
-    return total
+    return "{:.2f}".format(total)
 
 def multiply(num):
     total = 1
@@ -113,7 +114,7 @@ def multiply(num):
         total *= i
     if total == int(total):
         return int(total)
-    return total
+    return "{:.2f}".format(total)
 
 def divide(num):
     if num[1] == 0:
@@ -121,25 +122,25 @@ def divide(num):
     total = num[0] / num[1]
     if total == int(total):
         return int(total)
-    return total
+    return "{:.2f}".format(total)
 
 def mod(num):
     total = num[0] % num[1]
     if total == int(total):
         return int(total)
-    return total
+    return "{:.2f}".format(total)
 
 def sq_root(num):
     total = num[0] ** (1/2)
     if total == int(total):
         return int(total)
-    return total
+    return "{:.2f}".format(total)
 
 def square(num):
     total = num[0] **2
     if total == int(total):
         return int(total)
-    return total
+    return "{:.2f}".format(total)
 
 with sr.Microphone() as source:
     print("Speak Now")
