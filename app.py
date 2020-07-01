@@ -1,5 +1,8 @@
 import speech_recognition as sr
 from flask import Flask, request, render_template
+import os
+
+
 r = sr.Recognizer()
 
 app = Flask(__name__)
@@ -26,33 +29,44 @@ def numbers(inp):
     for i in inp.split():
         if i.isdigit():
             num.append(float(i))
+    print(num)
     return num
 
+# mytext = 'Welcome to geeksforgeeks!'
+# language = 'en'
+# myobj = gTTS(text=mytext, lang=language, slow=False)
+# myobj.save("welcome.mp3")
+# os.system("mpg321 welcome.mp3")
 
 def operation(inp):
     num = numbers(inp)
     if "mod" in inp or "modulus" in inp or "modulo" in inp or "remainder" in inp:
-        print(mod(num))
+        mytext = str(mod(num))
+        os.system(f"say {mytext}")
     elif "root" in inp:
-        print(sq_root(num))
+        mytext = str(sq_root(num))
+        os.system(f"say {mytext}")
     elif "square" in inp or "itself" in inp:
-        print(square(num))  
+        mytext = str(square(num))
+        os.system(f"say {mytext}")
     elif "add" in inp or "+" in inp or "plus" in inp:
-        print(add(num))
+        mytext = str(add(num))
+        os.system(f"say {mytext}")
     elif "subtract" in inp and "from" in inp:
-        print(subtract(num,flag=True)) #if flag is true num[1] - num[0]
+        mytext = str(subtract(num,flag=True)) #if flag is true num[1] - num[0]
+        os.system(f"say {mytext}") 
     elif "-" in inp or "minus" in inp:
-        print(subtract(num,flag=False)) #if flag is flase num[0] - num[1]    
-    elif "multiply" in inp or "times" in inp or "multiplied" in inp or "into" in inp or 'x' in inp or '*' in inp:
-        print(multiply(num))    
+        mytext = str(subtract(num,flag=False)) #if flag is flase num[0] - num[1]  
+        os.system(f"say {mytext}")   
+    elif "multiply" in inp or "times" in inp or "multiplied" in inp or "into" in inp or 'x' in inp or '*' in inp or 'X' in inp:
+        mytext = str(multiply(num))
+        os.system(f"say {mytext}")
     elif "divide" in inp or "by" in inp or "/" in inp:
-        print(divide(num))
+        mytext = str(divide(num))
+        os.system(f"say {mytext}")
 
 def add(num):
-    total = 0
-    for i in num:
-        total += i
-    return total
+    return sum(num)
 
 def subtract(num,flag):
     if flag == True:
