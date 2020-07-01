@@ -37,7 +37,6 @@ def numbers(inp):
     for i in inp.split():
         if isDigit(i):
             num.append(float(i))
-    print(num)
     return num
 
 
@@ -45,27 +44,52 @@ def operation(inp):
     num = numbers(inp)
     if "mod" in inp or "modulus" in inp or "modulo" in inp or "remainder" in inp:
         mytext = str(mod(num))
+        print(mytext)
         os.system(f"say {mytext}")
     elif "root" in inp:
         mytext = str(sq_root(num))
+        print(mytext)
         os.system(f"say {mytext}")
     elif "square" in inp or "itself" in inp:
         mytext = str(square(num))
+        print(mytext)
         os.system(f"say {mytext}")
     elif "add" in inp or "+" in inp or "plus" in inp:
         mytext = str(add(num))
+        print(mytext)
         os.system(f"say {mytext}")
     elif "subtract" in inp and "from" in inp:
         mytext = str(subtract(num,flag=True)) #if flag is true num[1] - num[0]
+        print(mytext)
+        if '-' in mytext:
+            os.system(f"say minus") 
+            mytext = mytext.replace('-', "")
+            os.system(f"say {mytext}") 
+        else:
+            os.system(f"say {mytext}") 
+
         os.system(f"say {mytext}") 
     elif "-" in inp or "minus" in inp:
         mytext = str(subtract(num,flag=False)) #if flag is flase num[0] - num[1]  
-        os.system(f"say {mytext}")   
+        print(mytext)
+        if '-' in mytext:
+            os.system(f"say minus") 
+            mytext = mytext.replace('-', "")
+            os.system(f"say {mytext}") 
+        else:
+            os.system(f"say {mytext}")    
     elif "multiply" in inp or "times" in inp or "multiplied" in inp or "into" in inp or 'x' in inp or '*' in inp or 'X' in inp:
         mytext = str(multiply(num))
-        os.system(f"say {mytext}")
+        print(mytext)
+        if '-' in mytext:
+            os.system(f"say minus") 
+            mytext = mytext.replace('-', "")
+            os.system(f"say {mytext}") 
+        else:
+            os.system(f"say {mytext}") 
     elif "divide" in inp or "by" in inp or "/" in inp:
         mytext = str(divide(num))
+        print(mytext)
         os.system(f"say {mytext}")
 
 def add(num):
@@ -85,6 +109,8 @@ def multiply(num):
     return total
 
 def divide(num):
+    if num[1] == 0:
+        return "Not Possible"
     total = num[0] / num[1]
     return total
 
