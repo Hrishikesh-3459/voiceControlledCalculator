@@ -93,37 +93,52 @@ def operation(inp):
         os.system(f"say {mytext}")
 
 def add(num):
-    return sum(num)
+    total = sum(num)
+    if total == int(total):
+        return int(total)
+    return total
 
 def subtract(num,flag):
     if flag == True:
         total = num[1] - num[0]
     else:
         total = num[0] - num[1]
+    if total == int(total):
+        return int(total)
     return total
 
 def multiply(num):
     total = 1
     for i in num:
         total *= i
+    if total == int(total):
+        return int(total)
     return total
 
 def divide(num):
     if num[1] == 0:
         return "Not Possible"
     total = num[0] / num[1]
+    if total == int(total):
+        return int(total)
     return total
 
 def mod(num):
     total = num[0] % num[1]
+    if total == int(total):
+        return int(total)
     return total
 
 def sq_root(num):
     total = num[0] ** (1/2)
+    if total == int(total):
+        return int(total)
     return total
 
 def square(num):
     total = num[0] **2
+    if total == int(total):
+        return int(total)
     return total
 
 with sr.Microphone() as source:
