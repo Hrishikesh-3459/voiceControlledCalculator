@@ -7,9 +7,20 @@ r = sr.Recognizer()
 
 app = Flask(__name__)
 
-# @app.route('/', methods= ["GET", "POST"])
-# def index():
-#     pass
+@app.route('/', methods=["GET", "POST"])
+def index():
+    if request.method == 'GET':
+        return render_template("index.html")
+
+
+@app.route('/output', methods=["GET", "POST"])
+def output():
+    with sr.Microphone() as source:
+        audio = r.listen(source)
+        inp = r.recognize_google(audio)
+        # print(inp)
+        fin = operation(inp.lower())
+        return render_template("output.html", ans = inp, fin = fin)
 
 def isDigit(x):
     try:
@@ -108,9 +119,9 @@ def percent(num):
     total = num[0] * num[1] / 100
     return total
 
-with sr.Microphone() as source:
-    print("Kuch toh bolo, sharma kyu rahe ho")
-    audio = r.listen(source)
-    inp = r.recognize_google(audio)
-    print(inp)
-    operation(inp.lower())
+# with sr.Microphone() as source:
+#     print("Kuch toh bolo, sharma kyu rahe ho")
+#     audio = r.listen(source)
+#     inp = r.recognize_google(audio)
+#     print(inp)
+#     operation(inp.lower())
