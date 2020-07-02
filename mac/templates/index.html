@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            Testing
+        </title>
+    </head>
+    <script>
+        function show(val) 
+         { 
+             document.getElementById("result").value+=val 
+         } 
+           
+         //function that evaluates the digit and return result 
+         function solve() 
+         { 
+             let x = document.getElementById("result").value 
+             let y = eval(x) 
+             document.getElementById("result").value = y 
+         } 
+           
+         //function that clear the display 
+         function clr() 
+         { 
+             document.getElementById("result").value = "" 
+         }
+
+         function triy()
+         {
+            document.getElementById("loading").value = "Listening" 
+         }
+    </script>
+
+    <style>
+        
+        input[type="text"] 
+        { 
+        background-color:white; 
+        border: solid black 2px; 
+        width:100% 
+        }
+        input[type="button"] 
+        { 
+        background-color:rgb(110, 52, 101); 
+        color: black; 
+        border: solid black 2px; 
+        width:95% 
+        }
+
+
+/* <p> sdjbsgj </p> */
+    </style>
+    <body style='background-color: rgb(210, 214, 180)'>
+
+        <h1>Voice controlled Calculator</h1>
+
+         <div> <!--voice calculator -->
+
+            <h2> Voice</h2>
+
+            <p> <input type="text" id="loading"/> </p>
+            <form action="/output">
+                <button type="submit" method="POST" onclick="triy()">SPEAK</button>
+            </form>
+
+        </div>
+
+        <div> <!--Normal calculator-->
+
+            <h2>Normal</h2>
+
+            <body> 
+                <table> 
+                   <tr> 
+                      <td colspan="3"><input type="text" id="result"/></td> 
+                      <td><input type="button" value="c" onclick="clr()"/> </td> 
+                   </tr> 
+                   <tr> 
+                      <td><input type="button" value="1" onclick="show('1')"/> </td> 
+                      <td><input type="button" value="2" onclick="show('2')"/> </td> 
+                      <td><input type="button" value="3" onclick="show('3')"/> </td> 
+                      <td><input type="button" value="/" onclick="show('/')"/> </td> 
+                   </tr> 
+                   <tr> 
+                      <td><input type="button" value="4" onclick="show('4')"/> </td> 
+                      <td><input type="button" value="5" onclick="show('5')"/> </td> 
+                      <td><input type="button" value="6" onclick="show('6')"/> </td> 
+                      <td><input type="button" value="-" onclick="show('-')"/> </td> 
+                   </tr> 
+                   <tr> 
+                      <td><input type="button" value="7" onclick="show('7')"/> </td> 
+                      <td><input type="button" value="8" onclick="show('8')"/> </td> 
+                      <td><input type="button" value="9" onclick="show('9')"/> </td> 
+                      <td><input type="button" value="+" onclick="show('+')"/> </td> 
+                   </tr> 
+                   <tr> 
+                      <td><input type="button" value="." onclick="show('.')"/> </td> 
+                      <td><input type="button" value="0" onclick="show('0')"/> </td> 
+                      <td><input type="button" value="=" onclick="solve()"/> </td> 
+                      <td><input type="button" value="*" onclick="show('*')"/> </td> 
+                   </tr> 
+                </table> 
+        </div>
+
+    </body>
+</html>

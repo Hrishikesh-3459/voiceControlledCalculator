@@ -9,19 +9,20 @@ app = Flask(__name__)
 
 
 
-# @app.route('/', methods=["GET", "POST"])
-# def index():
-#     if request.method == 'GET':
-#         return render_template("index.html")
+@app.route('/', methods=["GET", "POST"])
+def index():
+    if request.method == 'GET':
+        return render_template("index.html")
 
-# @app.route('/output', methods=["GET", "POST"])
-# def output():
-#     with sr.Microphone() as source:
-#         audio = r.listen(source)
-#         inp = r.recognize_google(audio)
-#         # print(inp)
-#         # operation(inp.lower())
-#         return render_template("output.html", ans = inp)
+
+@app.route('/output', methods=["GET", "POST"])
+def output():
+    with sr.Microphone() as source:
+        audio = r.listen(source)
+        inp = r.recognize_google(audio)
+        # print(inp)
+        fin = operation(inp.lower())
+        return render_template("output.html", ans = inp, fin = fin)
 
 
 def isDigit(x):
@@ -37,12 +38,23 @@ def numbers(inp):
     for i in inp.split():
         if isDigit(i):
             num.append(float(i))
+        if "%" in i:
+            num.append(float(i[:len(i)-1]))
+        if "/" in i:
+            x = list(map(float, i.split("/")))
+            num.extend(x)
     print(num)
     return num
 
 
 def operation(inp):
+    inp = inp.replace("minus ", " -")
+    inp = inp.replace("negative ", " -")
     num = numbers(inp)
+    if "percent" in inp or "percentage" in inp or "%" in inp:
+        mytext = str(percent(num))
+        print(mytext)
+        os.system(f"say {mytext}")
     if "mod" in inp or "modulus" in inp or "modulo" in inp or "remainder" in inp:
         mytext = str(mod(num))
         print(mytext)
@@ -57,6 +69,19 @@ def operation(inp):
         os.system(f"say {mytext}")
     elif "add" in inp or "+" in inp or "plus" in inp:
         mytext = str(add(num))
+        print(mytext)
+        os.system(f"say {mytext}")
+    elif "multiply" in inp or "times" in inp or "multiplied" in inp or "into" in inp or 'x' in inp or '*' in inp or 'X' in inp:
+        mytext = str(multiply(num))
+        print(mytext)
+        if '-' in mytext:
+            os.system(f"say minus") 
+            mytext = mytext.replace('-', "")
+            os.system(f"say {mytext}") 
+        else:
+            os.system(f"say {mytext}") 
+    elif "divide" in inp or "by" in inp or "/" in inp or "bye" in inp:
+        mytext = str(divide(num))
         print(mytext)
         os.system(f"say {mytext}")
     elif "subtract" in inp and "from" in inp:
@@ -79,19 +104,8 @@ def operation(inp):
             os.system(f"say {mytext}") 
         else:
             os.system(f"say {mytext}")    
-    elif "multiply" in inp or "times" in inp or "multiplied" in inp or "into" in inp or 'x' in inp or '*' in inp or 'X' in inp:
-        mytext = str(multiply(num))
-        print(mytext)
-        if '-' in mytext:
-            os.system(f"say minus") 
-            mytext = mytext.replace('-', "")
-            os.system(f"say {mytext}") 
-        else:
-            os.system(f"say {mytext}") 
-    elif "divide" in inp or "by" in inp or "/" in inp:
-        mytext = str(divide(num))
-        print(mytext)
-        os.system(f"say {mytext}")
+    
+    return mytext
 
 def add(num):
     total = sum(num)
@@ -142,9 +156,15 @@ def square(num):
         return int(total)
     return "{:.2f}".format(total)
 
-with sr.Microphone() as source:
-    print("Speak Now")
-    audio = r.listen(source)
-    inp = r.recognize_google(audio)
-    print(inp)
-    operation(inp.lower())
+def percent(num):
+    total = num[0] * num[1] / 100
+    if total == int(total):
+        return int(total)
+    return "{:.2f}".format(total)
+
+# with sr.Microphone() as source:
+#     print("Speak Now")
+#     audio = r.listen(source)
+#     inp = r.recognize_google(audio)
+#     print(inp)
+#     operation(inp.lower())
