@@ -25,6 +25,11 @@
          { 
              document.getElementById("result").value = "" 
          }
+
+         function triy()
+         {
+            document.getElementById("loading").value = "Listening" 
+         }
     </script>
 
     <style>
@@ -43,6 +48,8 @@
         width:95% 
         }
 
+
+/* <p> sdjbsgj </p> */
     </style>
     <body style='background-color: rgb(210, 214, 180)'>
 
@@ -52,8 +59,9 @@
 
             <h2> Voice</h2>
 
+            <p> <input type="text" id="loading"/> </p>
             <form action="/output">
-                <button type="submit" method="POST">SPEAK</button>
+                <button type="submit" method="POST" onclick="triy()">SPEAK</button>
             </form>
 
         </div>
