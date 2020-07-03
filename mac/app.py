@@ -21,7 +21,7 @@ def output():
         audio = r.listen(source)
         inp = r.recognize_google(audio)
         fin = operation(inp.lower())
-        render_template("output.html", ans = inp, fin = fin)
+        # render_template("output.html", ans = inp, fin = fin)
         # voice_out(fin)
         return render_template("output.html", ans = inp, fin = fin)
 
