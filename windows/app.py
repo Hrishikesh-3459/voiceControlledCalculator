@@ -20,7 +20,10 @@ def output():
         inp = r.recognize_google(audio)
         # print(inp)
         fin = operation(inp.lower())
-        return render_template("output.html", ans = inp, fin = fin)
+        if fin != '-1':
+            return render_template("output.html", ans = inp, fin = fin)
+        else:
+            return render_template("apology.html", inp = "Checking")
 
 def isDigit(x):
     try:
@@ -90,6 +93,8 @@ def add(num):
     return total
 
 def subtract(num,flag):
+    if len(num) < 2:
+        return -1
     if flag == True:
         total = num[1] - num[0]
     else:

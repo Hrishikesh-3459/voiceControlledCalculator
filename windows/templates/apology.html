@@ -1,0 +1,61 @@
+<!-- Webpage to show an error message when the user provides invalid or no input at all -->
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>
+            Error!
+        </title>
+        <style>
+            /* Class for the "ERROR" at the top */
+            .heading
+            {
+                font-size: 1in;
+                text-align: center;
+            }
+            /* Class for the image */
+            .container
+            {
+                position: relative;
+                text-align: center;
+                color: white;
+            }
+            /* Class for the text that appears over the image */
+            .bottom-right {
+                position: absolute;
+                bottom: 8px;
+                right: 520px;
+                font-size: x-large;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+                color: black;
+            }
+             .butt3
+            {
+                padding: 10px;
+                padding-left: 20px;
+                padding-right: 20px;
+                float: left;
+                border: solid black;
+                background-color: #97caef; 
+                text-align: center;
+                margin-top:200px;
+            }              
+        </style>
+    </head>
+    <body style='background-color:#41b3a3 '>
+
+        <form action="/">
+            <button class=butt3 type="submit" method="POST">Home</button>
+        </form>
+
+        <h1 class = "heading">ERROR</h1>
+
+        <div class = "container">
+
+            <img src= "static\dog.jpg" alt= "Picture of a dog" style="width: 500px;height:500px;" />
+            <!-- The message that appears on the bottom of the image is dependant on the type of error. -->
+            <div class = "bottom-right">{{ inp }}</div> 
+
+        </div>
+    </body>
+</html>

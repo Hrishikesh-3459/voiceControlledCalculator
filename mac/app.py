@@ -1,7 +1,6 @@
 import speech_recognition as sr
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect
 import os
-import time
 
 r = sr.Recognizer()
 
@@ -9,11 +8,10 @@ app = Flask(__name__)
 
 
 
-@app.route('/', methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def index():
-    if request.method == 'GET':
-        return render_template("index.html")
-
+    # if request.method == 'GET':
+    return render_template("index.html")
 
 @app.route('/output', methods=["GET", "POST"])
 def output():
@@ -21,10 +19,11 @@ def output():
         audio = r.listen(source)
         inp = r.recognize_google(audio)
         fin = operation(inp.lower())
-        # render_template("output.html", ans = inp, fin = fin)
-        # voice_out(fin)
-        return render_template("output.html", ans = inp, fin = fin)
-
+        if fin != '-1':
+            return render_template("output.html", ans = inp, fin = fin)
+        else:
+            return render_template("apology.html", inp = "Checking")
+                
 
 def isDigit(x):
     try:
@@ -45,13 +44,11 @@ def numbers(inp):
             if all(list(map(isDigit, i.split('/')))):
                 x = list(map(float, i.split("/")))
                 num.extend(x)
-    print(num)
     return num
 
 
 
 def voice_out(text):
-    # time.sleep(3)
     if '-' in text:
         os.system(f"say minus") 
         tmp = text.replace('-', "")
@@ -66,39 +63,30 @@ def operation(inp):
     num = numbers(inp)
     if "percent" in inp or "percentage" in inp or "%" in inp:
         mytext = str(percent(num))
-        print(mytext)
         voice_out(mytext)
     if "mod" in inp or "modulus" in inp or "modulo" in inp or "remainder" in inp:
         mytext = str(mod(num))
-        print(mytext)
         voice_out(mytext)
     elif "root" in inp:
         mytext = str(sq_root(num))
-        print(mytext)
         voice_out(mytext)
     elif "square" in inp or "itself" in inp:
         mytext = str(square(num))
-        print(mytext)
         voice_out(mytext)
     elif "add" in inp or "+" in inp or "plus" in inp:
         mytext = str(add(num))
-        print(mytext)
         voice_out(mytext)
     elif "multiply" in inp or "times" in inp or "multiplied" in inp or "into" in inp or 'x' in inp or '*' in inp or 'X' in inp:
         mytext = str(multiply(num))
-        print(mytext)
         voice_out(mytext)
     elif "divide" in inp or "by" in inp or "/" in inp or "bye" in inp:
         mytext = str(divide(num))
-        print(mytext)
         voice_out(mytext)
     elif "subtract" in inp and "from" in inp:
         mytext = str(subtract(num,flag=True)) #if flag is true num[1] - num[0]
-        print(mytext)
         voice_out(mytext)
     elif "-" in inp or "minus" in inp:
         mytext = str(subtract(num,flag=False)) #if flag is flase num[0] - num[1]  
-        print(mytext)
         voice_out(mytext)
     return mytext
 
@@ -109,6 +97,8 @@ def add(num):
     return "{:.2f}".format(total)
 
 def subtract(num,flag):
+    if len(num) < 2:
+        return -1
     if flag == True:
         total = num[1] - num[0]
     else:

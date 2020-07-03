@@ -47,20 +47,21 @@
             background-color:white; 
             border: solid black 2px; 
             width:100% ;
-            padding: 10px;
+            padding:18px;
+            padding-left: 20px;
+            font-size: medium;
+            font-weight: bolder;
+
         }
         input[type="button"] 
         { 
-            background-color:rgb(110, 52, 101); 
-            color: white;
+            background-color: #97caef; 
+            color: black;
             border: solid black 2px; 
             width:95%;
             padding: 10px;
-        }
-        .listen
-        {
-            text-align: center;
-        }     
+            font-weight: bolder;
+        } 
         .div1
         {
             float: left;
@@ -77,24 +78,28 @@
         }
         .button
         {
-            background-color:rgb(110, 52, 101); 
-            padding: 10px;
-            color:white;
+            background-color: #97caef; 
+            padding: 20px;
             border: solid black 2px; 
+            font-weight: bolder;
+        }
+        h2
+        {
+            font-size: xx-large;
         }
         
-/* <p> sdjbsgj </p> */
     </style>
-    <body style='background-color: rgb(210, 214, 180)'>
-
+    <body style='background-color:#41b3a3 '>
         <h1 class = "heading" >Voice controlled Calculator</h1>
 
          <div class = "div1"> <!--voice calculator -->
 
-            <h2> Voice</h2>
+            <h2> Voice </h2>
 
-            <!-- <p> <input type="text" id="loading"/> </p> -->
-            <img id="bigpic" src="bigpic" style="display:none;"/>
+            <img id="bigpic" src="bigpic" width=100 height=80 style="display:none;"/>
+            <br>
+            <br>
+            
             <form action="/output">
                 <button class="button" type="submit" method="POST" onclick="triy()">SPEAK</button>
             </form>
@@ -103,43 +108,42 @@
 
         <div class = "div2"> <!--Normal calculator-->
 
-            <h2>Normal</h2>
+            <h2 >Normal</h2>
 
             <body> 
                 <table> 
                    <tr> 
                       <td colspan="3"><input type="text" class="text" id="result"/></td> 
-                      <td><input type="button" value="c" onclick="clr()"/> </td> 
                    </tr> 
                    <tr> 
-                      <td><input type="button" value="1" onclick="show('1')"/> </td> 
-                      <td><input type="button" value="2" onclick="show('2')"/> </td> 
-                      <td><input type="button" value="3" onclick="show('3')"/> </td> 
-                      <td><input type="button" value="/" onclick="show('/')"/> </td> 
+                      <td><input type="button" value=" 1 " onclick="show('1')"/> </td> 
+                      <td><input type="button" value=" 2 " onclick="show('2')"/> </td> 
+                      <td><input type="button" value=" 3 " onclick="show('3')"/> </td> 
+                      <td><input type="button" value=" / " onclick="show('/')"/> </td> 
                    </tr> 
                    <tr> 
-                      <td><input type="button" value="4" onclick="show('4')"/> </td> 
-                      <td><input type="button" value="5" onclick="show('5')"/> </td> 
-                      <td><input type="button" value="6" onclick="show('6')"/> </td> 
-                      <td><input type="button" value="-" onclick="show('-')"/> </td> 
+                      <td><input type="button" value=" 4 " onclick="show('4')"/> </td> 
+                      <td><input type="button" value=" 5 " onclick="show('5')"/> </td> 
+                      <td><input type="button" value=" 6 " onclick="show('6')"/> </td> 
+                      <td><input type="button" value=" - " onclick="show('-')"/> </td> 
                    </tr> 
                    <tr> 
-                      <td><input type="button" value="7" onclick="show('7')"/> </td> 
-                      <td><input type="button" value="8" onclick="show('8')"/> </td> 
-                      <td><input type="button" value="9" onclick="show('9')"/> </td> 
-                      <td><input type="button" value="+" onclick="show('+')"/> </td> 
+                      <td><input type="button" value=" 7 " onclick="show('7')"/> </td> 
+                      <td><input type="button" value=" 8 " onclick="show('8')"/> </td> 
+                      <td><input type="button" value=" 9 " onclick="show('9')"/> </td> 
+                      <td><input type="button" value=" + " onclick="show('+')"/> </td> 
                    </tr> 
                    <tr> 
-                      <td><input type="button" value="." onclick="show('.')"/> </td> 
-                      <td><input type="button" value="0" onclick="show('0')"/> </td> 
-                      <td><input type="button" value="=" onclick="solve()"/> </td> 
-                      <td><input type="button" value="*" onclick="show('*')"/> </td> 
+                      <td><input type="button" value=" . " onclick="show('.')"/> </td> 
+                      <td><input type="button" value=" 0 " onclick="show('0')"/> </td> 
+                      <td><input type="button" value=" = " onclick="solve()"/> </td> 
+                      <td><input type="button" value=" * " onclick="show('*')"/> </td> 
                    </tr>
                    <tr> 
-                    <td><input type="button" value="%" onclick="show('/100')"/> </td> 
-                    <td><input type="button" value="mod" onclick="show('0')"/> </td> 
-                    <td><input type="button" value="^2" onclick="solve(val^2)"/> </td> 
-                    <td><input type="button" value="√" onclick="show(val^(1/2))"/> </td> 
+                    <td><input type="button" value=" c " onclick="clr()"/> </td> 
+                    <td><input type="button" value="mod" onclick="show('%')"/> </td> 
+                    <td><input type="button" value="pow" onclick="show('**')"/> </td> 
+                    <td><input type="button" value=" √ " onclick="show('**0.5')"/> </td> 
                  </tr> 
                 </table> 
         </div>
