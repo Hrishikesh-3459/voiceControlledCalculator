@@ -15,15 +15,17 @@ def index():
 
 @app.route('/output', methods=["GET", "POST"])
 def output():
-    with sr.Microphone() as source:
-        audio = r.listen(source)
-        inp = r.recognize_google(audio)
-        # print(inp)
-        fin = operation(inp.lower())
-        if fin != '-1':
-            return render_template("output.html", ans = inp, fin = fin)
-        else:
-            return render_template("apology.html", inp = "Checking")
+    try:
+        with sr.Microphone() as source:
+            audio = r.listen(source, timeout= 5)
+            inp = r.recognize_google(audio)
+            fin = operation(inp.lower())
+            if fin != "error":
+                return render_template("output.html", ans = inp, fin = fin)
+            else:
+                return render_template("apology.html")
+    except Exception:
+        return render_template("apology.html")
 
 def isDigit(x):
     try:
@@ -44,7 +46,6 @@ def numbers(inp):
             if all(list(map(isDigit, i.split('/')))):
                 x = list(map(float, i.split("/")))
                 num.extend(x)
-    print(num)
     return num
 
 def voice_out(num_mytext):
@@ -57,15 +58,12 @@ def voice_out(num_mytext):
     filename = 'output.mp3'
     myobj.save(filename)
     playsound.playsound(filename)
-    print(mytext)
     return mytext
 
 def operation(inp):    
     inp = inp.replace("minus ", " -")
     inp = inp.replace("negative ", " -")
-    print(inp)
     num = numbers(inp)
-    a=""
     if "percent" in inp or "percentage" in inp or "%" in inp:
         a=voice_out(percent(num))
     elif "mod" in inp or "modulus" in inp or "modulo" in inp or "remainder" in inp:
@@ -84,17 +82,17 @@ def operation(inp):
         a=voice_out(subtract(num,flag=True)) #if flag is true num[1] - num[0]  
     elif "-" in inp or "minus" in inp:
         a=voice_out(subtract(num,flag=False)) #if flag is flase num[0] - num[1] 
+    else:
+        a = "error"
     return a
 
 def add(num):
-    total = 0
-    for i in num:
-        total += i
+    total = sum(num)
     return total
 
 def subtract(num,flag):
     if len(num) < 2:
-        return -1
+        return "error"
     if flag == True:
         total = num[1] - num[0]
     else:
@@ -102,29 +100,40 @@ def subtract(num,flag):
     return total
 
 def multiply(num):
-    
+    if len(num) < 2:
+        return "error"
     total = 1
     for i in num:
         total *= i
     return total
 
 def divide(num):
+    if len(num) < 2:
+        return "error"
     total = num[0] / num[1]
     return total
 
 def mod(num):
+    if len(num) < 2:
+        return "error"
     total = num[0] % num[1]
     return total
 
 def sq_root(num):
+    if len(num) < 1:
+        return "error"
     total = num[0] ** (1/2)
     return total
 
 def square(num):
+    if len(num) < 1:
+        return "error"
     total = num[0] **2
     return total
 
 def percent(num):
+    if len(num) < 2:
+        return "error"
     total = num[0] * num[1] / 100
     return total
 

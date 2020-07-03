@@ -47,6 +47,7 @@ def numbers(inp):
             if all(list(map(isDigit, i.split('/')))):
                 x = list(map(float, i.split("/")))
                 num.extend(x)
+    print(num)
     return num
 
 
@@ -67,7 +68,7 @@ def operation(inp):
     if "percent" in inp or "percentage" in inp or "%" in inp:
         mytext = str(percent(num))
         voice_out(mytext)
-    if "mod" in inp or "modulus" in inp or "modulo" in inp or "remainder" in inp:
+    elif "mod" in inp or "modulus" in inp or "modulo" in inp or "remainder" in inp:
         mytext = str(mod(num))
         voice_out(mytext)
     elif "root" in inp:
@@ -76,19 +77,19 @@ def operation(inp):
     elif "square" in inp or "itself" in inp:
         mytext = str(square(num))
         voice_out(mytext)
-    elif "add" in inp or "+" in inp or "plus" in inp:
+    elif "add" in inp or "+" in inp or "plus" in inp or "sum" in inp:
         mytext = str(add(num))
         voice_out(mytext)
-    elif "multiply" in inp or "times" in inp or "multiplied" in inp or "into" in inp or 'x' in inp or '*' in inp or 'X' in inp:
+    elif "multiply" in inp or "times" in inp or "multiplied" in inp or "into" in inp or 'x' in inp or '*' in inp or 'X' in inp or "product" in inp:
         mytext = str(multiply(num))
         voice_out(mytext)
-    elif "divide" in inp or "by" in inp or "/" in inp or "bye" in inp:
+    elif "divide" in inp or "by" in inp or "/" in inp or "bye" in inp or "quotient" in inp:
         mytext = str(divide(num))
         voice_out(mytext)
     elif "subtract" in inp and "from" in inp:
         mytext = str(subtract(num,flag=True)) #if flag is true num[1] - num[0]
         voice_out(mytext)
-    elif "-" in inp or "minus" in inp:
+    elif "-" in inp or "minus" in inp or "difference" in inp:
         mytext = str(subtract(num,flag=False)) #if flag is flase num[0] - num[1]  
         voice_out(mytext)
     else:
@@ -150,7 +151,7 @@ def sq_root(num):
     return "{:.2f}".format(total)
 
 def square(num):
-    if len(num) < 2:
+    if len(num) < 1:
         return "error"
     total = num[0] **2
     if total == int(total):
@@ -158,6 +159,8 @@ def square(num):
     return "{:.2f}".format(total)
 
 def percent(num):
+    if len(num) < 2:
+        return "error"
     total = num[0] * num[1] / 100
     if total == int(total):
         return int(total)
