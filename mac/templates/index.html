@@ -3,7 +3,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>
-            Testing
+            Voice Controlled Calculator
         </title>
     </head>
     <script>
@@ -28,52 +28,87 @@
 
          function triy()
          {
-            document.getElementById("loading").value = "Listening" 
+            // document.getElementById("loading").value = "Listening" 
+            // document.getElementById("loading").className="listen"
+            var pic = "static/loading.gif";
+            document.getElementById('bigpic').src = pic.replace('90x90', '225x225');
+            document.getElementById('bigpic').style.display='block';
          }
     </script>
 
     <style>
-        
-        input[type="text"] 
+        .heading
+        {
+            font-size: 1in;
+            text-align: center;
+        }
+        .text        
         { 
-        background-color:white; 
-        border: solid black 2px; 
-        width:100% 
+            background-color:white; 
+            border: solid black 2px; 
+            width:100% ;
+            padding: 10px;
         }
         input[type="button"] 
         { 
-        background-color:rgb(110, 52, 101); 
-        color: black; 
-        border: solid black 2px; 
-        width:95% 
+            background-color:rgb(110, 52, 101); 
+            color: white;
+            border: solid black 2px; 
+            width:95%;
+            padding: 10px;
         }
-
-
+        .listen
+        {
+            text-align: center;
+        }     
+        .div1
+        {
+            float: left;
+            padding: 200px;
+            padding-top: 100px;
+            padding-left: 300px;
+        }   
+        .div2
+        {
+            float: right;
+            padding: 200px;
+            padding-top: 100px;
+            padding-right:300px;
+        }
+        .button
+        {
+            background-color:rgb(110, 52, 101); 
+            padding: 10px;
+            color:white;
+            border: solid black 2px; 
+        }
+        
 /* <p> sdjbsgj </p> */
     </style>
     <body style='background-color: rgb(210, 214, 180)'>
 
-        <h1>Voice controlled Calculator</h1>
+        <h1 class = "heading" >Voice controlled Calculator</h1>
 
-         <div> <!--voice calculator -->
+         <div class = "div1"> <!--voice calculator -->
 
             <h2> Voice</h2>
 
-            <p> <input type="text" id="loading"/> </p>
+            <!-- <p> <input type="text" id="loading"/> </p> -->
+            <img id="bigpic" src="bigpic" style="display:none;"/>
             <form action="/output">
-                <button type="submit" method="POST" onclick="triy()">SPEAK</button>
+                <button class="button" type="submit" method="POST" onclick="triy()">SPEAK</button>
             </form>
 
         </div>
 
-        <div> <!--Normal calculator-->
+        <div class = "div2"> <!--Normal calculator-->
 
             <h2>Normal</h2>
 
             <body> 
                 <table> 
                    <tr> 
-                      <td colspan="3"><input type="text" id="result"/></td> 
+                      <td colspan="3"><input type="text" class="text" id="result"/></td> 
                       <td><input type="button" value="c" onclick="clr()"/> </td> 
                    </tr> 
                    <tr> 
@@ -99,7 +134,13 @@
                       <td><input type="button" value="0" onclick="show('0')"/> </td> 
                       <td><input type="button" value="=" onclick="solve()"/> </td> 
                       <td><input type="button" value="*" onclick="show('*')"/> </td> 
-                   </tr> 
+                   </tr>
+                   <tr> 
+                    <td><input type="button" value="%" onclick="show('/100')"/> </td> 
+                    <td><input type="button" value="mod" onclick="show('0')"/> </td> 
+                    <td><input type="button" value="^2" onclick="solve(val^2)"/> </td> 
+                    <td><input type="button" value="√" onclick="show(val^(1/2))"/> </td> 
+                 </tr> 
                 </table> 
         </div>
 
