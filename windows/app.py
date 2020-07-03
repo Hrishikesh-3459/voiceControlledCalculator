@@ -38,8 +38,9 @@ def numbers(inp):
         if "%" in i:
             num.append(float(i[:len(i)-1]))
         if "/" in i:
-            x = list(map(float, i.split("/")))
-            num.extend(x)
+            if all(list(map(isDigit, i.split('/')))):
+                x = list(map(float, i.split("/")))
+                num.extend(x)
     print(num)
     return num
 
@@ -54,30 +55,33 @@ def voice_out(num_mytext):
     myobj.save(filename)
     playsound.playsound(filename)
     print(mytext)
+    return mytext
 
 def operation(inp):    
     inp = inp.replace("minus ", " -")
     inp = inp.replace("negative ", " -")
     print(inp)
     num = numbers(inp)
+    a=""
     if "percent" in inp or "percentage" in inp or "%" in inp:
-        voice_out(percent(num))
+        a=voice_out(percent(num))
     elif "mod" in inp or "modulus" in inp or "modulo" in inp or "remainder" in inp:
-        voice_out(mod(num))
+        a=voice_out(mod(num))
     elif "root" in inp:
-        voice_out(sq_root(num))
+        a=voice_out(sq_root(num))
     elif "square" in inp or "itself" in inp:
-        voice_out(square(num))
+        a=voice_out(square(num))
     elif "add" in inp or "+" in inp or "plus" in inp:
-        voice_out(add(num))       
+        a=voice_out(add(num))       
     elif "multiply" in inp or "times" in inp or "multiplied" in inp or "into" in inp or "x" in inp or "*" in inp:
-        voice_out(multiply(num))    
+        a=voice_out(multiply(num))    
     elif "divide" in inp or "by" in inp or "/" in inp or "bye" in inp:
-        voice_out(divide(num))
+        a=voice_out(divide(num))
     elif "subtract" in inp and "from" in inp:
-        voice_out(subtract(num,flag=True)) #if flag is true num[1] - num[0]  
+        a=voice_out(subtract(num,flag=True)) #if flag is true num[1] - num[0]  
     elif "-" in inp or "minus" in inp:
-        voice_out(subtract(num,flag=False)) #if flag is flase num[0] - num[1] 
+        a=voice_out(subtract(num,flag=False)) #if flag is flase num[0] - num[1] 
+    return a
 
 def add(num):
     total = 0

@@ -5,11 +5,43 @@
         <title>
             Testing
         </title>
+        <style>
+            .heading
+        {
+            font-size: 1in;
+            text-align: center;
+        }
+        .text
+        {
+            font-size: xx-large;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+            padding: 50 px;
+        }
+        .butt2
+           {
+                padding: 10px;
+                padding-left: 20px;
+                padding-right: 20px;
+                float: left;
+                border: solid black;
+                background-color:rgb(110, 52, 101); 
+                color: white;
+                text-align: center;
+                margin-top:200px;
+           }
+        </style>
     </head>
-    <body style='background-color: rgb(32, 204, 204)'>
-        <h1>Voice controlled Calculator</h1>
-        Did you say : {{ ans }}
-        <br>
-        Answer : {{ fin }}
+    <body style='background-color: rgb(210, 214, 180)'>
+        <h1 class = "heading" >Voice controlled Calculator</h1>
+
+        <p class="text">
+            Did you say : {{ ans }}
+            <br>
+            Answer : {{ fin }}
+        </p>
+        <form action="/">
+            <button class=butt2 type="submit" method="GET">Home</button>
+        </form>
     </body>
 </html>
