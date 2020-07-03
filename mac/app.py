@@ -15,15 +15,18 @@ def index():
 
 @app.route('/output', methods=["GET", "POST"])
 def output():
-    with sr.Microphone() as source:
-        audio = r.listen(source)
-        inp = r.recognize_google(audio)
-        fin = operation(inp.lower())
-        if fin != '-1':
-            return render_template("output.html", ans = inp, fin = fin)
-        else:
-            return render_template("apology.html", inp = "Checking")
-                
+    try:
+        with sr.Microphone() as source:
+            audio = r.listen(source, timeout= 5)
+            inp = r.recognize_google(audio)
+            fin = operation(inp.lower())
+            if fin != "error":
+                return render_template("output.html", ans = inp, fin = fin)
+            else:
+                return render_template("apology.html")
+    except Exception:
+        return render_template("apology.html")
+
 
 def isDigit(x):
     try:
@@ -88,6 +91,9 @@ def operation(inp):
     elif "-" in inp or "minus" in inp:
         mytext = str(subtract(num,flag=False)) #if flag is flase num[0] - num[1]  
         voice_out(mytext)
+    else:
+        mytext = "error"
+        voice_out(mytext)
     return mytext
 
 def add(num):
@@ -98,7 +104,7 @@ def add(num):
 
 def subtract(num,flag):
     if len(num) < 2:
-        return -1
+        return "error"
     if flag == True:
         total = num[1] - num[0]
     else:
@@ -108,6 +114,8 @@ def subtract(num,flag):
     return "{:.2f}".format(total)
 
 def multiply(num):
+    if len(num) < 2:
+        return "error"
     total = 1
     for i in num:
         total *= i
@@ -116,26 +124,34 @@ def multiply(num):
     return "{:.2f}".format(total)
 
 def divide(num):
+    if len(num) < 2:
+        return "error"
     if num[1] == 0:
-        return "Not Possible"
+        return "Infinity"
     total = num[0] / num[1]
     if total == int(total):
         return int(total)
     return "{:.2f}".format(total)
 
 def mod(num):
+    if len(num) < 2:
+        return "error"
     total = num[0] % num[1]
     if total == int(total):
         return int(total)
     return "{:.2f}".format(total)
 
 def sq_root(num):
+    if num[0] < 1:
+        return "error"
     total = num[0] ** (1/2)
     if total == int(total):
         return int(total)
     return "{:.2f}".format(total)
 
 def square(num):
+    if len(num) < 2:
+        return "error"
     total = num[0] **2
     if total == int(total):
         return int(total)
