@@ -165,10 +165,3 @@ def percent(num):
     if total == int(total):
         return int(total)
     return "{:.2f}".format(total)
-
-# with sr.Microphone() as source:
-#     print("Speak Now")
-#     audio = r.listen(source)
-#     inp = r.recognize_google(audio)
-#     print(inp)
-#     operation(inp.lower())
