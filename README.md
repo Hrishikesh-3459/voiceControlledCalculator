@@ -45,7 +45,10 @@ $ venv\Scripts\activate
 #### Installing gTTS
 
 ##### Mac
-*HRISHIKESH*
+
+```
+$ pip install gTTS
+```
 
 ##### Windows
 
@@ -53,7 +56,7 @@ $ venv\Scripts\activate
 $ pip install gTTS
 ```
 
-#### Installing playsound (Only On Windows)
+#### Installing playsound (Only for Windows)
 
 ```
 $ pip install playsound
