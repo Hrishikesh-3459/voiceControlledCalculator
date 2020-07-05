@@ -142,6 +142,9 @@ Usage of the website is very straighforward, and any necessary instructions are 
 
 * CSS - Style Sheet Language used
 
+## Acknowledgement 
+
+Hat Tip to the developers of the APIs used in the code
 
 ## Authors
 
