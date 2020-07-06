@@ -66,6 +66,8 @@ def operation(inp):
     num = numbers(inp)
     if "percent" in inp or "percentage" in inp or "%" in inp:
         a=voice_out(percent(num))
+    elif "power" in inp or "raised to" in inp:
+        a=voice_out(power(num))
     elif "mod" in inp or "modulus" in inp or "modulo" in inp or "remainder" in inp:
         a=voice_out(mod(num))
     elif "root" in inp:
@@ -137,9 +139,8 @@ def percent(num):
     total = num[0] * num[1] / 100
     return total
 
-# with sr.Microphone() as source:
-#     print("Kuch toh bolo, sharma kyu rahe ho")
-#     audio = r.listen(source)
-#     inp = r.recognize_google(audio)
-#     print(inp)
-#     operation(inp.lower())
+def power(num):
+    if len(num) < 2:
+        return "error"
+    total = num[0] ** num[1]
+    return total
