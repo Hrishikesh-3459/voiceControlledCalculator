@@ -68,6 +68,9 @@ def operation(inp):
     if "percent" in inp or "percentage" in inp or "%" in inp:
         mytext = str(percent(num))
         voice_out(mytext)
+    elif "power" in inp or "raised to" in inp:
+        mytext = str(power(num))
+        voice_out(mytext)
     elif "mod" in inp or "modulus" in inp or "modulo" in inp or "remainder" in inp:
         mytext = str(mod(num))
         voice_out(mytext)
@@ -162,6 +165,14 @@ def percent(num):
     if len(num) < 2:
         return "error"
     total = num[0] * num[1] / 100
+    if total == int(total):
+        return int(total)
+    return "{:.2f}".format(total)
+
+def power(num):
+    if len(num) < 2:
+        return "error"
+    total = num[0] ** num[1]
     if total == int(total):
         return int(total)
     return "{:.2f}".format(total)
