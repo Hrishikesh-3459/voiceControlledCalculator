@@ -148,8 +148,8 @@ Hat Tip to the developers of the APIs used in the code
 
 ## Authors
 
-* **Hrishikesh Mulkutkar**
+* [**Hrishikesh Mulkutkar**](https://github.com/Hrishikesh-3459)
 
-* **Ayush Kapasi**
+* [**Ayush Kapasi**](https://github.com/kapasi)
 
-* **Adithya Neelakantan**
+* [**Adithya Neelakantan**](https://github.com/neelstrongarm)
