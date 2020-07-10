@@ -1,6 +1,6 @@
 # Voice Controlled Calculator
 
-This is a Web based Voice Calculator using Google text-to-speech API. Along with functions for basic arithmetic operations,  it can also perform percentage and remainder calculations. Once the calculations are performed, the answer is given through both speech and text. Beside this voice calculator is a normal calculatoor with the same operations.
+This is a Web based Voice Calculator using Google text-to-speech API. Along with functions for basic arithmetic operations,  it can also perform percentage and remainder calculations. Once the calculations are performed, the answer is given through both speech and text. Beside this voice calculator is a normal calculator with the same operations.
 
 ## Getting Started
 
@@ -21,6 +21,8 @@ Please make sure to do all of this before you run the code
 * Playsound (Only for Windows)
 
 ### Installing
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install flask.
 
 #### Installing Flask
 
